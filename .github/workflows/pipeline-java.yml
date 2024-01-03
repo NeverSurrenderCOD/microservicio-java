@@ -1,20 +1,24 @@
 name: CI
+
 on:
+  
   push:
   workflow_dispatch:
+
 jobs:
+  
   build:
+    
     runs-on: ubuntu-latest
+
     steps:
+    
       - uses: actions/checkout@v3
+      
       - name: Build
         run: |
           echo "Building"
-
-      - name: Run a multi-line script
-        run: |
-          echo "hola mundo"
       - name: "Sonar CLoud Analysis"
         run: |
           chmod +x gradlew
-          .gradlew build sonar -Dsonar.tokar=${{ secrets.SONARCLOUD_TOKEN}}
+          ./gradlew build sonar -Dsonar.token=${{ secrets.SONARCLOUD_TOKEN}}
