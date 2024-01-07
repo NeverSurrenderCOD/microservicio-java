@@ -26,6 +26,6 @@ sonar {
     property "sonar.projectName", "microservicio-java"
   }
 }
-#test {
-#	useJUnitPlatform()
-#}
+//test {
+//	useJUnitPlatform()
+//}
