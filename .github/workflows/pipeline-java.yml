@@ -18,6 +18,11 @@ jobs:
       - name: Build
         run: |
           echo "Building"
+      - name: "Sonar CLoud Analysis"
+        run: |
+          chmod +x gradlew
+          ./gradlew build sonar -Dsonar.token=${{ secrets.SONARCLOUD_TOKEN }}
+          
       - name: SonarQube Quality Gate check
         uses: sonarsource/sonarqube-quality-gate-action@master
         env:
@@ -25,7 +30,4 @@ jobs:
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         with:
           scanMetadataReportFile: build/sonar/report-task.txt
-      - name: "Sonar CLoud Analysis"
-        run: |
-          chmod +x gradlew
-          ./gradlew build sonar -Dsonar.token=${{ secrets.SONARCLOUD_TOKEN }}
+
